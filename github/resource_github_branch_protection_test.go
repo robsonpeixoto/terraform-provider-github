@@ -34,6 +34,7 @@ func TestAccGithubBranchProtection_basic(t *testing.T) {
 					resource.TestCheckResourceAttr("github_branch_protection.master", "repository", repoName),
 					resource.TestCheckResourceAttr("github_branch_protection.master", "branch", "master"),
 					resource.TestCheckResourceAttr("github_branch_protection.master", "enforce_admins", "true"),
+					resource.TestCheckResourceAttr("github_branch_protection.master", "required_approving_review_count", "2"),
 					resource.TestCheckResourceAttr("github_branch_protection.master", "required_status_checks.0.strict", "true"),
 					resource.TestCheckResourceAttr("github_branch_protection.master", "required_status_checks.0.contexts.#", "1"),
 					resource.TestCheckResourceAttr("github_branch_protection.master", "required_pull_request_reviews.0.dismiss_stale_reviews", "true"),
@@ -53,6 +54,7 @@ func TestAccGithubBranchProtection_basic(t *testing.T) {
 					testAccCheckGithubBranchProtectionNoPullRequestReviewsExist(&protection),
 					resource.TestCheckResourceAttr("github_branch_protection.master", "repository", repoName),
 					resource.TestCheckResourceAttr("github_branch_protection.master", "branch", "master"),
+					resource.TestCheckResourceAttr("github_branch_protection.master", "required_approving_review_count", "1"),
 					resource.TestCheckResourceAttr("github_branch_protection.master", "required_status_checks.0.strict", "false"),
 					resource.TestCheckResourceAttr("github_branch_protection.master", "required_status_checks.0.contexts.#", "1"),
 					resource.TestCheckResourceAttr("github_branch_protection.master", "required_pull_request_reviews.#", "0"),
@@ -455,6 +457,7 @@ resource "github_branch_protection" "master" {
   repository = "${github_repository.test.name}"
   branch     = "master"
   enforce_admins = true
+  required_approving_review_count = 2
 
   required_status_checks {
   }

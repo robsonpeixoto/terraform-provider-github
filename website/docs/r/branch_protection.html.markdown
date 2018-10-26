@@ -73,6 +73,7 @@ The following arguments are supported:
 
 `required_pull_request_reviews` supports the following arguments:
 
+* `required_approving_review_count`: (Optional) Specifies the number of approvals required before the pull request can be merged. Valid values are 1-6. Defaults to `1`.
 * `dismiss_stale_reviews`: (Optional) Dismiss approved reviews automatically when a new commit is pushed. Defaults to `false`.
 * `dismissal_users`: (Optional) The list of user logins with dismissal access
 * `dismissal_teams`: (Optional) The list of team slugs with dismissal access.
